@@ -758,45 +758,17 @@
 		<sixx.object sixx.id="423" sixx.name="workspaceText" sixx.type="String" >&quot;Dotaz 1 - Vsechny pujcky z Mestske knihovny Praha 1 a delka pujcky je aspon tyden&quot;
 Pujcky select: [:pu | pu pobocka nazev = &#39;MK Praha 1 - Skolska&#39; and: [pu delkaPujcky &gt;= 7]]
 
-&quot;Dotaz 2 - Nejvice pujcovana kniha s literarnim smerem romantismus&quot;
-Knihy select: [: po | po autor literarniObdobi = &#39;Romantismus&#39; and: [ po pocetPujcek = &#40;&#40;Knihy collect: [: f | f pocetPujcek]&#41; max&#41;]]
+&quot;Dotaz 2 - Nejvice pujcovana kniha s literarnim smerem romantismus&#44; ktera je starsi nez 200 let&quot;
+&#40;Knihy select: [: po | po autor literarniObdobi = &#39;Romantismus&#39; and: [po stari &gt; 200]]&#41; max
 
-&#40;Knihy select: [: po | po autor literarniObdobi = &#39;Romantismus&#39;]&#41; collect: [:f | f pocetPujcek] max
-
-
-Knihy select: [: po | po pocetPujcek = &#40;&#40;pocetPujcek collect: [: f | f pocetPujcek]&#41; max&#41;]
-collect: [: f | f pocetPujcek]&#41; max&#41;
-
-&quot;Dotaz 3 - Pujcky&#44; ktere maji delku kratsi nez prumer a ktere jsou vraceny&quot;
+&quot;Dotaz 3 - Pujcky&#44; ktere maji delku pujcky kratsi nez prumer a ktere jsou vraceny&quot;
 Pujcky select: [:f | f delkaPujcky &lt; &#40;&#40;Pujcky collect: [: p | p delkaPujcky ]&#41; avg asFloat&#41; and: [f jeVracena = true]]
 
-
-
-
-
-&quot;Dotaz 3 - Vsechny pujcky&#44; ktere maji aspon jedno dilo od Shakespeara&quot;
+&quot;Dotaz 4 - Vsechny pujcky&#44; ktere maji aspon jedno dilo od Shakespeara&quot;
 Pujcky select: [:f | f pobocka mesto = &#39;Praha&#39; and: [f knihy anySatisfy: [:r | r autor prijmeni = &#39;Shakespeare&#39;]]]
 
-
-
-
-
-&quot;Dotaz 2 - Vsechny knihovny v Praze&#44; ktere maji jakekoliv dilo od Shakespeara&quot; 
-Pobocky select: [:po | po mesto = &#39;Praha&#39; and: [po ]
-
-&quot;Dotaz 3 - Vsechny ctenari&#44; kteri si pujcili Shakespeara v Praze&quot;
-Ctenari select: [: p | p pujcky select: [:f | f knihy anySatisfy: [:r | r nazev = &quot;]]]
-Pujcky select: [:f | f knihy anySatisfy: [:r | r nazev = &quot;Hamlet&quot;]]
-Knihy select: [:r | r nazev = &quot;Hamlet&quot; ]
-Knihy select: [:pu | pu nazev = &quot;Hamlet&quot; ]
-
-
-
-Knihy select: [: po | po autor prijmeni = &#39;Shakespeare&#39;]
-
-
-&quot;Dotaz 3 - Nejvice pujcovana kniha s literarnim smerem romantismus&quot;
-Knihy select: [: po | po autor literarniObdobi = &#39;Romantismus&#39; and: [ po pocetPujcek = &#40;&#40;Knihy collect: [: f | f pocetPujcek]&#41; max&#41;]]</sixx.object>
+&quot;Dotaz 5 - Vsichni ctenari&#44; kteri si pujcili Annu Kareninu&quot;
+Ctenari select: [:c | c pujcky anySatisfy: [:p | p knihy anySatisfy: [:k | k nazev = &#39;Anna Karenina&#39; ]]]</sixx.object>
 		<sixx.object sixx.id="424" sixx.name="scriptText" sixx.type="String" >c1 := Ctenar new.
 c1 jmeno: &#39;Jan&#39;.
 c1 prijmeni: &#39;Novak&#39;.
@@ -1066,10 +1038,10 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 					<sixx.object sixx.id="435" sixx.type="DaskalosCompositionConnection" >
 						<sixx.object sixx.idref="428" sixx.name="fromSymbol" ></sixx.object>
 						<sixx.object sixx.id="436" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
-							<sixx.object sixx.id="437" sixx.name="subject" sixx.type="Symbol" >Pobocka</sixx.object>
+							<sixx.object sixx.id="437" sixx.name="subject" sixx.type="Symbol" >Kniha</sixx.object>
 							<sixx.object sixx.id="438" sixx.name="position" sixx.type="Rectangle" >
-								<sixx.object sixx.id="439" sixx.name="origin" sixx.type="Point" >730@520</sixx.object>
-								<sixx.object sixx.id="440" sixx.name="corner" sixx.type="Point" >900@680</sixx.object>
+								<sixx.object sixx.id="439" sixx.name="origin" sixx.type="Point" >550@240</sixx.object>
+								<sixx.object sixx.id="440" sixx.name="corner" sixx.type="Point" >670@410</sixx.object>
 							</sixx.object>
 							<sixx.object sixx.idref="433" sixx.name="methodsText" ></sixx.object>
 							<sixx.object sixx.idref="433" sixx.name="instVarsText" ></sixx.object>
@@ -1077,17 +1049,17 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 								<sixx.object sixx.id="442" sixx.type="DaskalosCompositionConnection" >
 									<sixx.object sixx.idref="436" sixx.name="fromSymbol" ></sixx.object>
 									<sixx.object sixx.id="443" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
-										<sixx.object sixx.id="444" sixx.name="subject" sixx.type="Symbol" >Osoba</sixx.object>
+										<sixx.object sixx.id="444" sixx.name="subject" sixx.type="Symbol" >Autor</sixx.object>
 										<sixx.object sixx.id="445" sixx.name="position" sixx.type="Rectangle" >
-											<sixx.object sixx.id="446" sixx.name="origin" sixx.type="Point" >300@40</sixx.object>
-											<sixx.object sixx.id="447" sixx.name="corner" sixx.type="Point" >410@170</sixx.object>
+											<sixx.object sixx.id="446" sixx.name="origin" sixx.type="Point" >340@220</sixx.object>
+											<sixx.object sixx.id="447" sixx.name="corner" sixx.type="Point" >460@420</sixx.object>
 										</sixx.object>
 										<sixx.object sixx.idref="433" sixx.name="methodsText" ></sixx.object>
 										<sixx.object sixx.idref="433" sixx.name="instVarsText" ></sixx.object>
 										<sixx.object sixx.id="448" sixx.name="compositionConnections" sixx.type="Set" >
 										</sixx.object>
 									</sixx.object>
-									<sixx.object sixx.id="449" sixx.name="name" sixx.type="String" >vedouciPobocky</sixx.object>
+									<sixx.object sixx.id="449" sixx.name="name" sixx.type="String" >autor</sixx.object>
 									<sixx.object sixx.id="450" sixx.name="cardinality" sixx.type="String" ></sixx.object>
 									<sixx.object sixx.id="451" sixx.name="stereotype" sixx.type="String" ></sixx.object>
 									<sixx.object sixx.idref="433" sixx.name="fromPoint" ></sixx.object>
@@ -1098,53 +1070,53 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 								</sixx.object>
 							</sixx.object>
 						</sixx.object>
-						<sixx.object sixx.id="453" sixx.name="name" sixx.type="String" >pobocka</sixx.object>
-						<sixx.object sixx.idref="450" sixx.name="cardinality" ></sixx.object>
-						<sixx.object sixx.idref="451" sixx.name="stereotype" ></sixx.object>
+						<sixx.object sixx.id="453" sixx.name="name" sixx.type="String" >knihy</sixx.object>
+						<sixx.object sixx.id="454" sixx.name="cardinality" sixx.type="String" >&#42;</sixx.object>
+						<sixx.object sixx.id="455" sixx.name="stereotype" sixx.type="String" >{Set}</sixx.object>
 						<sixx.object sixx.idref="433" sixx.name="fromPoint" ></sixx.object>
 						<sixx.object sixx.idref="433" sixx.name="toPoint" ></sixx.object>
-						<sixx.object sixx.id="454" sixx.name="controlPoints" sixx.type="List" >
+						<sixx.object sixx.id="456" sixx.name="controlPoints" sixx.type="List" >
 							<sixx.object sixx.idref="433" ></sixx.object>
 						</sixx.object>
 					</sixx.object>
-					<sixx.object sixx.id="455" sixx.type="DaskalosCompositionConnection" >
+					<sixx.object sixx.id="457" sixx.type="DaskalosCompositionConnection" >
 						<sixx.object sixx.idref="428" sixx.name="fromSymbol" ></sixx.object>
-						<sixx.object sixx.id="456" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
-							<sixx.object sixx.id="457" sixx.name="subject" sixx.type="Symbol" >Kniha</sixx.object>
-							<sixx.object sixx.id="458" sixx.name="position" sixx.type="Rectangle" >
-								<sixx.object sixx.id="459" sixx.name="origin" sixx.type="Point" >550@240</sixx.object>
-								<sixx.object sixx.id="460" sixx.name="corner" sixx.type="Point" >670@410</sixx.object>
+						<sixx.object sixx.id="458" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
+							<sixx.object sixx.id="459" sixx.name="subject" sixx.type="Symbol" >Pobocka</sixx.object>
+							<sixx.object sixx.id="460" sixx.name="position" sixx.type="Rectangle" >
+								<sixx.object sixx.id="461" sixx.name="origin" sixx.type="Point" >730@520</sixx.object>
+								<sixx.object sixx.id="462" sixx.name="corner" sixx.type="Point" >900@680</sixx.object>
 							</sixx.object>
 							<sixx.object sixx.idref="433" sixx.name="methodsText" ></sixx.object>
 							<sixx.object sixx.idref="433" sixx.name="instVarsText" ></sixx.object>
-							<sixx.object sixx.id="461" sixx.name="compositionConnections" sixx.type="Set" >
-								<sixx.object sixx.id="462" sixx.type="DaskalosCompositionConnection" >
-									<sixx.object sixx.idref="456" sixx.name="fromSymbol" ></sixx.object>
-									<sixx.object sixx.id="463" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
-										<sixx.object sixx.id="464" sixx.name="subject" sixx.type="Symbol" >Autor</sixx.object>
-										<sixx.object sixx.id="465" sixx.name="position" sixx.type="Rectangle" >
-											<sixx.object sixx.id="466" sixx.name="origin" sixx.type="Point" >340@220</sixx.object>
-											<sixx.object sixx.id="467" sixx.name="corner" sixx.type="Point" >460@420</sixx.object>
+							<sixx.object sixx.id="463" sixx.name="compositionConnections" sixx.type="Set" >
+								<sixx.object sixx.id="464" sixx.type="DaskalosCompositionConnection" >
+									<sixx.object sixx.idref="458" sixx.name="fromSymbol" ></sixx.object>
+									<sixx.object sixx.id="465" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
+										<sixx.object sixx.id="466" sixx.name="subject" sixx.type="Symbol" >Osoba</sixx.object>
+										<sixx.object sixx.id="467" sixx.name="position" sixx.type="Rectangle" >
+											<sixx.object sixx.id="468" sixx.name="origin" sixx.type="Point" >300@40</sixx.object>
+											<sixx.object sixx.id="469" sixx.name="corner" sixx.type="Point" >410@170</sixx.object>
 										</sixx.object>
 										<sixx.object sixx.idref="433" sixx.name="methodsText" ></sixx.object>
 										<sixx.object sixx.idref="433" sixx.name="instVarsText" ></sixx.object>
-										<sixx.object sixx.id="468" sixx.name="compositionConnections" sixx.type="Set" >
+										<sixx.object sixx.id="470" sixx.name="compositionConnections" sixx.type="Set" >
 										</sixx.object>
 									</sixx.object>
-									<sixx.object sixx.id="469" sixx.name="name" sixx.type="String" >autor</sixx.object>
+									<sixx.object sixx.id="471" sixx.name="name" sixx.type="String" >vedouciPobocky</sixx.object>
 									<sixx.object sixx.idref="450" sixx.name="cardinality" ></sixx.object>
 									<sixx.object sixx.idref="451" sixx.name="stereotype" ></sixx.object>
 									<sixx.object sixx.idref="433" sixx.name="fromPoint" ></sixx.object>
 									<sixx.object sixx.idref="433" sixx.name="toPoint" ></sixx.object>
-									<sixx.object sixx.id="470" sixx.name="controlPoints" sixx.type="List" >
+									<sixx.object sixx.id="472" sixx.name="controlPoints" sixx.type="List" >
 										<sixx.object sixx.idref="433" ></sixx.object>
 									</sixx.object>
 								</sixx.object>
 							</sixx.object>
 						</sixx.object>
-						<sixx.object sixx.id="471" sixx.name="name" sixx.type="String" >knihy</sixx.object>
-						<sixx.object sixx.id="472" sixx.name="cardinality" sixx.type="String" >&#42;</sixx.object>
-						<sixx.object sixx.id="473" sixx.name="stereotype" sixx.type="String" >{Set}</sixx.object>
+						<sixx.object sixx.id="473" sixx.name="name" sixx.type="String" >pobocka</sixx.object>
+						<sixx.object sixx.idref="450" sixx.name="cardinality" ></sixx.object>
+						<sixx.object sixx.idref="451" sixx.name="stereotype" ></sixx.object>
 						<sixx.object sixx.idref="433" sixx.name="fromPoint" ></sixx.object>
 						<sixx.object sixx.idref="433" sixx.name="toPoint" ></sixx.object>
 						<sixx.object sixx.id="474" sixx.name="controlPoints" sixx.type="List" >
@@ -1195,8 +1167,8 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 					<sixx.object sixx.id="504" sixx.name="corner" sixx.type="Point" >519@366</sixx.object>
 				</sixx.object>
 			</sixx.object>
+			<sixx.object sixx.idref="465" ></sixx.object>
 			<sixx.object sixx.idref="443" ></sixx.object>
-			<sixx.object sixx.idref="463" ></sixx.object>
 			<sixx.object sixx.id="505" sixx.type="DaskalosCollectionSymbol" >
 				<sixx.object sixx.idref="89" sixx.name="subject" ></sixx.object>
 				<sixx.object sixx.id="506" sixx.name="position" sixx.type="Rectangle" >
@@ -1252,7 +1224,7 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 						<sixx.object sixx.idref="535" sixx.name="fromSymbol" ></sixx.object>
 						<sixx.object sixx.idref="428" sixx.name="toSymbol" ></sixx.object>
 						<sixx.object sixx.id="542" sixx.name="name" sixx.type="String" >pujcky</sixx.object>
-						<sixx.object sixx.idref="472" sixx.name="cardinality" ></sixx.object>
+						<sixx.object sixx.idref="454" sixx.name="cardinality" ></sixx.object>
 						<sixx.object sixx.id="543" sixx.name="stereotype" sixx.type="String" >{Set}</sixx.object>
 						<sixx.object sixx.idref="433" sixx.name="fromPoint" ></sixx.object>
 						<sixx.object sixx.idref="433" sixx.name="toPoint" ></sixx.object>
@@ -1262,7 +1234,6 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 					</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.idref="456" ></sixx.object>
 			<sixx.object sixx.id="545" sixx.type="DaskalosCollectionSymbol" >
 				<sixx.object sixx.idref="383" sixx.name="subject" ></sixx.object>
 				<sixx.object sixx.id="546" sixx.name="position" sixx.type="Rectangle" >
@@ -1285,6 +1256,7 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 				</sixx.object>
 			</sixx.object>
 			<sixx.object sixx.idref="436" ></sixx.object>
+			<sixx.object sixx.idref="458" ></sixx.object>
 			<sixx.object sixx.id="560" sixx.type="DaskalosCollectionSymbol" >
 				<sixx.object sixx.idref="349" sixx.name="subject" ></sixx.object>
 				<sixx.object sixx.id="561" sixx.name="position" sixx.type="Rectangle" >
@@ -1308,100 +1280,100 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 			</sixx.object>
 		</sixx.object>
 		<sixx.object sixx.id="575" sixx.name="diagramConnections" sixx.type="Set" >
-			<sixx.object sixx.id="576" sixx.type="DaskalosInheritanceConnection" >
+			<sixx.object sixx.id="576" sixx.type="DaskalosElementConnection" >
 				<sixx.object sixx.idref="535" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="443" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.idref="560" sixx.name="toSymbol" ></sixx.object>
 			</sixx.object>
 			<sixx.object sixx.id="577" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="443" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="560" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="578" sixx.type="DaskalosInheritanceConnection" >
-				<sixx.object sixx.idref="463" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="443" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="579" sixx.type="DaskalosCompositionConnection" >
-				<sixx.object sixx.idref="428" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="436" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="580" sixx.name="name" sixx.type="String" >pobocka</sixx.object>
-				<sixx.object sixx.idref="450" sixx.name="cardinality" ></sixx.object>
-				<sixx.object sixx.idref="451" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="581" sixx.name="fromPoint" sixx.type="Point" >660@600</sixx.object>
-				<sixx.object sixx.id="582" sixx.name="toPoint" sixx.type="Point" >730@600</sixx.object>
-				<sixx.object sixx.id="583" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="584" sixx.type="Point" >695@600</sixx.object>
-				</sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="585" sixx.type="DaskalosCompositionConnection" >
-				<sixx.object sixx.idref="535" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="428" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="586" sixx.name="name" sixx.type="String" >pujcky</sixx.object>
-				<sixx.object sixx.idref="472" sixx.name="cardinality" ></sixx.object>
-				<sixx.object sixx.idref="543" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="587" sixx.name="fromPoint" sixx.type="Point" >200@420</sixx.object>
-				<sixx.object sixx.id="588" sixx.name="toPoint" sixx.type="Point" >540@630</sixx.object>
-				<sixx.object sixx.id="589" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="590" sixx.type="Point" >200@525</sixx.object>
-					<sixx.object sixx.id="591" sixx.type="Point" >200@630</sixx.object>
-					<sixx.object sixx.id="592" sixx.type="Point" >370@630</sixx.object>
-				</sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="593" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="436" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="545" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="594" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="428" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="505" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="595" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="535" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="560" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="596" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="463" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="490" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="597" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="463" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="560" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="598" sixx.type="DaskalosElementConnection" >
 				<sixx.object sixx.idref="535" sixx.name="fromSymbol" ></sixx.object>
 				<sixx.object sixx.idref="520" sixx.name="toSymbol" ></sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="599" sixx.type="DaskalosCompositionConnection" >
-				<sixx.object sixx.idref="456" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="463" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="600" sixx.name="name" sixx.type="String" >autor</sixx.object>
+			<sixx.object sixx.id="578" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="443" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="490" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="579" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="443" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="560" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="580" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="436" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="475" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="581" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="428" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="458" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="582" sixx.name="name" sixx.type="String" >pobocka</sixx.object>
 				<sixx.object sixx.idref="450" sixx.name="cardinality" ></sixx.object>
 				<sixx.object sixx.idref="451" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="601" sixx.name="fromPoint" sixx.type="Point" >550@(2265/7)</sixx.object>
-				<sixx.object sixx.id="602" sixx.name="toPoint" sixx.type="Point" >460@(2250/7)</sixx.object>
-				<sixx.object sixx.id="603" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="604" sixx.type="Point" >505@(645/2)</sixx.object>
+				<sixx.object sixx.id="583" sixx.name="fromPoint" sixx.type="Point" >660@600</sixx.object>
+				<sixx.object sixx.id="584" sixx.name="toPoint" sixx.type="Point" >730@600</sixx.object>
+				<sixx.object sixx.id="585" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="586" sixx.type="Point" >695@600</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="605" sixx.type="DaskalosCompositionConnection" >
+			<sixx.object sixx.id="587" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="535" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="428" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="588" sixx.name="name" sixx.type="String" >pujcky</sixx.object>
+				<sixx.object sixx.idref="454" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="543" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="589" sixx.name="fromPoint" sixx.type="Point" >200@420</sixx.object>
+				<sixx.object sixx.id="590" sixx.name="toPoint" sixx.type="Point" >540@630</sixx.object>
+				<sixx.object sixx.id="591" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="592" sixx.type="Point" >200@525</sixx.object>
+					<sixx.object sixx.id="593" sixx.type="Point" >200@630</sixx.object>
+					<sixx.object sixx.id="594" sixx.type="Point" >370@630</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="595" sixx.type="DaskalosInheritanceConnection" >
+				<sixx.object sixx.idref="535" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="465" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="596" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="465" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="560" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="597" sixx.type="DaskalosInheritanceConnection" >
+				<sixx.object sixx.idref="443" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="465" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="598" sixx.type="DaskalosCompositionConnection" >
 				<sixx.object sixx.idref="436" sixx.name="fromSymbol" ></sixx.object>
 				<sixx.object sixx.idref="443" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="606" sixx.name="name" sixx.type="String" >vedouciPobocky</sixx.object>
+				<sixx.object sixx.id="599" sixx.name="name" sixx.type="String" >autor</sixx.object>
 				<sixx.object sixx.idref="450" sixx.name="cardinality" ></sixx.object>
 				<sixx.object sixx.idref="451" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="607" sixx.name="fromPoint" sixx.type="Point" >740@520</sixx.object>
-				<sixx.object sixx.id="608" sixx.name="toPoint" sixx.type="Point" >410@100</sixx.object>
-				<sixx.object sixx.id="609" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="610" sixx.type="Point" >740@310</sixx.object>
-					<sixx.object sixx.id="611" sixx.type="Point" >740@100</sixx.object>
-					<sixx.object sixx.id="612" sixx.type="Point" >575@100</sixx.object>
+				<sixx.object sixx.id="600" sixx.name="fromPoint" sixx.type="Point" >550@(2265/7)</sixx.object>
+				<sixx.object sixx.id="601" sixx.name="toPoint" sixx.type="Point" >460@(2250/7)</sixx.object>
+				<sixx.object sixx.id="602" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="603" sixx.type="Point" >505@(645/2)</sixx.object>
 				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="604" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="458" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="465" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="605" sixx.name="name" sixx.type="String" >vedouciPobocky</sixx.object>
+				<sixx.object sixx.idref="450" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="451" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="606" sixx.name="fromPoint" sixx.type="Point" >740@520</sixx.object>
+				<sixx.object sixx.id="607" sixx.name="toPoint" sixx.type="Point" >410@100</sixx.object>
+				<sixx.object sixx.id="608" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="609" sixx.type="Point" >740@310</sixx.object>
+					<sixx.object sixx.id="610" sixx.type="Point" >740@100</sixx.object>
+					<sixx.object sixx.id="611" sixx.type="Point" >575@100</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="612" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="458" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="545" sixx.name="toSymbol" ></sixx.object>
 			</sixx.object>
 			<sixx.object sixx.id="613" sixx.type="DaskalosCompositionConnection" >
 				<sixx.object sixx.idref="428" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="456" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.idref="436" sixx.name="toSymbol" ></sixx.object>
 				<sixx.object sixx.id="614" sixx.name="name" sixx.type="String" >knihy</sixx.object>
-				<sixx.object sixx.idref="472" sixx.name="cardinality" ></sixx.object>
-				<sixx.object sixx.idref="473" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.idref="454" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="455" sixx.name="stereotype" ></sixx.object>
 				<sixx.object sixx.id="615" sixx.name="fromPoint" sixx.type="Point" >(6632/11)@520</sixx.object>
 				<sixx.object sixx.id="616" sixx.name="toPoint" sixx.type="Point" >(6676/11)@410</sixx.object>
 				<sixx.object sixx.id="617" sixx.name="controlPoints" sixx.type="List" >
@@ -1409,8 +1381,8 @@ Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; a
 				</sixx.object>
 			</sixx.object>
 			<sixx.object sixx.id="619" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="456" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="475" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.idref="428" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="505" sixx.name="toSymbol" ></sixx.object>
 			</sixx.object>
 		</sixx.object>
 	</sixx.object>
