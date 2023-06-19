@@ -47,7 +47,50 @@ PujcovnaKnih</TITLE>
 <B>author&#40;s&#41;: </B>Mirek Nguyen
 <BR>
 <P>
-Semestralni projekt na pujcovani knih z ruznych pobocek.
+Semestralni projekt na pujcovani knih z ruznych pobocek.<BR>
+<BR>
+Struktura a atributy trid<BR>
+- Osoba - jmeno&#44; prijmeni<BR>
+- Ctenar<BR>
+- Autor - datumNarozeni&#44; datumUmrti&#44; literarniObdobi<BR>
+- Kniha - nazev&#44; iban&#44; rokVydani<BR>
+- Pujcka - datumPujceni&#44; datumVraceni<BR>
+Pobocka - nazev&#44; ulice&#44; mesto<BR>
+<BR>
+Metody - Ctenar<BR>
+- pocetPujcek - vraci pocet pujcek<BR>
+- pocetPujcenychKnih - vraci kolik si ctenar pujcil dohromady knih<BR>
+- vratilVse - kontroluje zda-li vratil vse<BR>
+<BR>
+Metody - Autor<BR>
+- jeNazivu - zda-li je autor stale nazivu<BR>
+- vek - vraci aktualni vek autora &#40;pripadne veku&#44; ktereho se dozil&#41;<BR>
+<BR>
+Metody - Kniha<BR>
+- pocetPujcek - vraci kolik pujcek obsahuje tuto knihu<BR>
+- stari - vraci jak stara je kniha<BR>
+<BR>
+Metody - Pujcka<BR>
+- delkaPujcky - jak dlouho uz trvala/trva pujcka<BR>
+- jeVracena - zda-li se pujcka vratila<BR>
+- pocetKnih - celkovy pocet knih v pujcce<BR>
+<BR>
+Metody - Pobocka<BR>
+- pocetPujcenychKnih - celkovy pocet knih&#44; ktere pobocka pujcila<BR>
+<BR>
+Dotazy:<BR>
+- Dotaz 1 - vraci vsechny pujcky z Mestske knihovny Praha 1 a delka pujcky je aspon 7 dni<BR>
+- Dotaz 2  - vraci nejvice pujcovanou knihu/knihy se zanrem romantismus&#44; ktera je starsi nez 200 let <BR>
+- Dotaz 3 - vraci pujcky&#44; ktere maji kratkou dobu pujcky &#40;mene nez prumer&#41; a ktere jsou jiz vraceny<BR>
+- Dotaz 4 - vraci vsechny pujcky&#44; ktere maji aspon jedno dilo od Shakespeara<BR>
+- Dotaz 5 - vraci vsechny ctenare&#44; kteri si pujcili Annu Kareninu<BR>
+<BR>
+Pravidla<BR>
+- Pravidlo 1 - pujcky musi mit pobocku<BR>
+- Pravidlo 2 - pujcky musi mit datum pujceni<BR>
+- Pravidlo 3 - osoby musi mit striktne jmeno a prijmeni<BR>
+- Pravidlo 4 - vsechny pujcky musi obsahovat aspon jednu knihu<BR>
+
 </P>
 
 <BR>
@@ -71,7 +114,7 @@ Ctenari select: [:c | c pujcky anySatisfy: [:p | p knihy anySatisfy: [:k | k naz
 &quot;Pravidlo 1 - Vsechny pujcky musi mit pobocku&quot;
 &#40;Pujcka allInstances select: [:pu | pu pobocka isNil]&#41; isEmpty
 
-&quot;Pravidlo 2 - Vsechny pujcky musi mit nejaky datum pujceni&quot;
+&quot;Pravidlo 2 - Vsechny pujcky musi mit datum pujceni&quot;
 &#40;Pujcka allInstances select: [:pu | pu datumPujceni isNil]&#41; isEmpty
 
 &quot;Pravidlo 3 - Vsechny osoby musi mit jmeno a prijmeni&quot;
@@ -95,10 +138,6 @@ Ctenari :Set
 <LI>
 <CODE>
 Knihy :Set
-</CODE>
-<LI>
-<CODE>
-Osoby :Set
 </CODE>
 <LI>
 <CODE>
@@ -511,11 +550,6 @@ c2 pujcky add: p6; add: p5.
 c3 pujcky add: p1.
 c4 pujcky add: p2; add: p8.
 c5 pujcky add: p3; add: p4.
-
-Osoby := Set new.
-Osoby add: o1; add: o2; add: o3; add: o4; add: o5.
-Osoby add: c1; add: c2; add: c3; add: c4; add: c5.
-Osoby add: a1; add: a2; add: a3; add: a4; add: a5.
 
 Ctenari := Set new.
 Ctenari add: c1; add: c2; add: c3; add: c4; add: c5.
