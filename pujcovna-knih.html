@@ -51,39 +51,39 @@ Semestralni projekt na pujcovani knih z ruznych pobocek.<BR>
 <BR>
 Struktura a atributy trid<BR>
 - Osoba - jmeno&#44; prijmeni<BR>
-- Ctenar<BR>
-- Autor - datumNarozeni&#44; datumUmrti&#44; literarniObdobi<BR>
+- Ctenar&lt;Osoba&gt;<BR>
+- Autor&lt;Osoba&gt; - datumNarozeni&#44; datumUmrti&#44; literarniObdobi<BR>
 - Kniha - nazev&#44; iban&#44; rokVydani<BR>
 - Pujcka - datumPujceni&#44; datumVraceni<BR>
-Pobocka - nazev&#44; ulice&#44; mesto<BR>
+- Pobocka - nazev&#44; ulice&#44; mesto<BR>
 <BR>
 Metody - Ctenar<BR>
 - pocetPujcek - vraci pocet pujcek<BR>
-- pocetPujcenychKnih - vraci kolik si ctenar pujcil dohromady knih<BR>
-- vratilVse - kontroluje zda-li vratil vse<BR>
+- pocetPujcenychKnih - soucet vsech pujcenych knih<BR>
+- vratilVse - kontroluje zda vratil vsechny knihy<BR>
 <BR>
 Metody - Autor<BR>
 - jeNazivu - zda-li je autor stale nazivu<BR>
-- vek - vraci aktualni vek autora &#40;pripadne veku&#44; ktereho se dozil&#41;<BR>
+- vek - aktualni vek autora &#40;pripadne veku&#44; ktereho se dozil&#41;<BR>
 <BR>
 Metody - Kniha<BR>
 - pocetPujcek - vraci kolik pujcek obsahuje tuto knihu<BR>
-- stari - vraci jak stara je kniha<BR>
+- stari - stari knihy zobrazene v letech<BR>
 <BR>
 Metody - Pujcka<BR>
 - delkaPujcky - jak dlouho uz trvala/trva pujcka<BR>
-- jeVracena - zda-li se pujcka vratila<BR>
-- pocetKnih - celkovy pocet knih v pujcce<BR>
+- jeVracena - zda-li se knihy vratily<BR>
+- pocetKnih - celkovy pocet knih<BR>
 <BR>
 Metody - Pobocka<BR>
-- pocetPujcenychKnih - celkovy pocet knih&#44; ktere pobocka pujcila<BR>
+- pocetPujcenychKnih - celkovy pocet knih pujcenych na pobocce<BR>
 <BR>
 Dotazy:<BR>
-- Dotaz 1 - vraci vsechny pujcky z Mestske knihovny Praha 1 a delka pujcky je aspon 7 dni<BR>
-- Dotaz 2  - vraci nejvice pujcovanou knihu/knihy se zanrem romantismus&#44; ktera je starsi nez 200 let <BR>
-- Dotaz 3 - vraci pujcky&#44; ktere maji kratkou dobu pujcky &#40;mene nez prumer&#41; a ktere jsou jiz vraceny<BR>
-- Dotaz 4 - vraci vsechny pujcky&#44; ktere maji aspon jedno dilo od Shakespeara<BR>
-- Dotaz 5 - vraci vsechny ctenare&#44; kteri si pujcili Annu Kareninu<BR>
+- Dotaz 1 -  vsechny pujcky z Mestske knihovny Praha 1 a delka pujcky je aspon 7 dni<BR>
+- Dotaz 2 - nejvice pujcovana kniha/knihy se smerem romantismus&#44; je starsi nez 200 let <BR>
+- Dotaz 3 - pujcky&#44; ktere maji kratkou dobu pujcky &#40;mene nez prumer&#41; a ktere jsou jiz vraceny<BR>
+- Dotaz 4 - pujcky&#44; ktere maji aspon jedno dilo od Shakespeara<BR>
+- Dotaz 5 - vraci ctenare&#44; kteri si pujcili Annu Kareninu<BR>
 <BR>
 Pravidla<BR>
 - Pravidlo 1 - pujcky musi mit pobocku<BR>
