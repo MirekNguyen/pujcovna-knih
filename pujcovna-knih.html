@@ -53,7 +53,48 @@ Semestralni projekt na pujcovani knih z ruznych pobocek.
 <BR>
 <HR>
 <H2>Workspace</H2>
-<PRE>^&#40;Pujcka allInstances select: [:pu | pu knihy includes: k1]&#41; size</PRE>
+<PRE>&quot;Dotaz 1 - Vsechny pujcky z Mestske knihovny Praha 1 a delka pujcky je aspon tyden&quot;
+Pujcky select: [:pu | pu pobocka nazev = &#39;MK Praha 1 - Skolska&#39; and: [pu delkaPujcky &gt;= 7]]
+
+&quot;Dotaz 2 - Nejvice pujcovana kniha s literarnim smerem romantismus&quot;
+Knihy select: [: po | po autor literarniObdobi = &#39;Romantismus&#39; and: [ po pocetPujcek = &#40;&#40;Knihy collect: [: f | f pocetPujcek]&#41; max&#41;]]
+
+&#40;Knihy select: [: po | po autor literarniObdobi = &#39;Romantismus&#39;]&#41; collect: [:f | f pocetPujcek] max
+
+
+Knihy select: [: po | po pocetPujcek = &#40;&#40;pocetPujcek collect: [: f | f pocetPujcek]&#41; max&#41;]
+collect: [: f | f pocetPujcek]&#41; max&#41;
+
+&quot;Dotaz 3 - Pujcky&#44; ktere maji delku kratsi nez prumer a ktere jsou vraceny&quot;
+Pujcky select: [:f | f delkaPujcky &lt; &#40;&#40;Pujcky collect: [: p | p delkaPujcky ]&#41; avg asFloat&#41; and: [f jeVracena = true]]
+
+
+
+
+
+&quot;Dotaz 3 - Vsechny pujcky&#44; ktere maji aspon jedno dilo od Shakespeara&quot;
+Pujcky select: [:f | f pobocka mesto = &#39;Praha&#39; and: [f knihy anySatisfy: [:r | r autor prijmeni = &#39;Shakespeare&#39;]]]
+
+
+
+
+
+&quot;Dotaz 2 - Vsechny knihovny v Praze&#44; ktere maji jakekoliv dilo od Shakespeara&quot; 
+Pobocky select: [:po | po mesto = &#39;Praha&#39; and: [po ]
+
+&quot;Dotaz 3 - Vsechny ctenari&#44; kteri si pujcili Shakespeara v Praze&quot;
+Ctenari select: [: p | p pujcky select: [:f | f knihy anySatisfy: [:r | r nazev = &quot;]]]
+Pujcky select: [:f | f knihy anySatisfy: [:r | r nazev = &quot;Hamlet&quot;]]
+Knihy select: [:r | r nazev = &quot;Hamlet&quot; ]
+Knihy select: [:pu | pu nazev = &quot;Hamlet&quot; ]
+
+
+
+Knihy select: [: po | po autor prijmeni = &#39;Shakespeare&#39;]
+
+
+&quot;Dotaz 3 - Nejvice pujcovana kniha s literarnim smerem romantismus&quot;
+Knihy select: [: po | po autor literarniObdobi = &#39;Romantismus&#39; and: [ po pocetPujcek = &#40;&#40;Knihy collect: [: f | f pocetPujcek]&#41; max&#41;]]</PRE>
 <H4>Workspace Objects</H4>
 <UL>
 
@@ -77,6 +118,10 @@ Osoby :Set
 <LI>
 <CODE>
 Pobocky :Set
+</CODE>
+<LI>
+<CODE>
+Pujcky :Set
 </CODE>
 <LI>
 <CODE>
@@ -442,7 +487,7 @@ p9 datumVraceni: &#39;01-18-2023&#39; asDate.
 
 p10 := Pujcka new.
 p10 datumPujceni: &#39;02-01-2023&#39; asDate.
-p10 datumVraceni: &#39;01-31-2023&#39; asDate.
+p10 datumVraceni: &#39;03-31-2023&#39; asDate.
 
 p1 knihy add: k1; add: k3; add: k6.
 p2 knihy add: k2; add: k4; add: k7; add: k9.
@@ -493,7 +538,10 @@ Knihy := Set new.
 Knihy add: k1; add: k2; add: k3; add: k4; add: k5; add: k6; add: k7; add: k8; add: k9; add: k10.
 
 Pobocky := Set new.
-Pobocky add: pob1; add: pob2; add: pob3; add: pob4; add: pob5.</PRE>
+Pobocky add: pob1; add: pob2; add: pob3; add: pob4; add: pob5.
+
+Pujcky := Set new.
+Pujcky add: p1; add: p2; add: p3; add: p4; add: p5; add: p6; add: p7; add: p8; add: p9; add: p10.</PRE>
 <HR>
 <H2>Diagram</H2>
 <IMG SRC="pujcovna-knih.gif">
