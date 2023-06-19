@@ -304,7 +304,8 @@ Knihy add: k1; add: k2; add: k3; add: k4; add: k5; add: k6; add: k7; add: k8; ad
 
 Pobocky := Set new.
 Pobocky add: pob1; add: pob2; add: pob3; add: pob4; add: pob5.
-</PRE>
+
+^&#40;Pujcka allInstances select: [:pu | pu knihy includes: k1]&#41; size</PRE>
 <H4>Workspace Objects</H4>
 <UL>
 
@@ -624,11 +625,19 @@ nazev:
 </CODE>
 <BR>
 <CODE>
+pocetPujcek
+</CODE>
+<BR>
+<CODE>
 rokVydani
 </CODE>
 <BR>
 <CODE>
 rokVydani:
+</CODE>
+<BR>
+<CODE>
+stari
 </CODE>
 <BR>
 </TD></TR>
@@ -655,6 +664,18 @@ initialize
      iban := nil.
      autor := nil.
      rokVydani := nil.</PRE>
+<LI>
+<B><CODE>
+pocetPujcek
+</CODE></B>
+<PRE>
+	^&#40;Pujcka allInstances select: [:pu | pu knihy includes: self]&#41; size</PRE>
+<LI>
+<B><CODE>
+stari
+</CODE></B>
+<PRE>
+	^Date today year - rokVydani</PRE>
 </UL>
 <TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
 <TR>
@@ -703,7 +724,15 @@ datumVraceni:
 </CODE>
 <BR>
 <CODE>
+delkaPujcky
+</CODE>
+<BR>
+<CODE>
 initialize
+</CODE>
+<BR>
+<CODE>
+jeVracena
 </CODE>
 <BR>
 <CODE>
@@ -732,6 +761,14 @@ pobocka:
 <UL>
 <LI>
 <B><CODE>
+delkaPujcky
+</CODE></B>
+<PRE>
+	| datum |
+	datum := datumVraceni isNil ifTrue: [Date today] ifFalse: [datumVraceni].
+	^datum subtractDate: datumPujceni</PRE>
+<LI>
+<B><CODE>
 initialize
 </CODE></B>
 <PRE>
@@ -742,6 +779,12 @@ initialize
      datumVraceni := nil.
      knihy := Set new.
      pobocka := nil.</PRE>
+<LI>
+<B><CODE>
+jeVracena
+</CODE></B>
+<PRE>
+	^datumVraceni notNil ifTrue: [true] ifFalse: [false]</PRE>
 </UL>
 <TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
 <TR>
@@ -794,6 +837,10 @@ nazev:
 </CODE>
 <BR>
 <CODE>
+pocetPujcenychKnih
+</CODE>
+<BR>
+<CODE>
 ulice
 </CODE>
 <BR>
@@ -833,6 +880,13 @@ initialize
      nazev := nil.
      mesto := nil.
      vedouciPobocky := nil.</PRE>
+<LI>
+<B><CODE>
+pocetPujcenychKnih
+</CODE></B>
+<PRE>
+	^&#40;&#40;Pujcka allInstances select: [:pu | pu pobocka = self]&#41; 
+		collect: [:pu | pu knihy size]&#41; sum</PRE>
 </UL>
 <TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
 <TR>
@@ -881,11 +935,19 @@ initialize
 </CODE>
 <BR>
 <CODE>
+jeNazivu
+</CODE>
+<BR>
+<CODE>
 literarniObdobi
 </CODE>
 <BR>
 <CODE>
 literarniObdobi:
+</CODE>
+<BR>
+<CODE>
+vek
 </CODE>
 <BR>
 </TD></TR>
@@ -911,6 +973,20 @@ initialize
      datumNarozeni := nil.
      datumUmrti := nil.
      literarniObdobi := nil.</PRE>
+<LI>
+<B><CODE>
+jeNazivu
+</CODE></B>
+<PRE>
+	^self datumUmrti isNil ifTrue: [true] ifFalse: [false]</PRE>
+<LI>
+<B><CODE>
+vek
+</CODE></B>
+<PRE>
+	| datum |
+	datum := datumUmrti isNil ifTrue: [Date today] ifFalse: [datumUmrti].
+	^&#40;&#40;datum subtractDate: datumNarozeni&#41; / 365.2422&#41; truncated</PRE>
 </UL>
 <TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
 <TR>
@@ -963,6 +1039,10 @@ jeStudentem:
 </CODE>
 <BR>
 <CODE>
+pocetPujcek
+</CODE>
+<BR>
+<CODE>
 pujcky
 </CODE>
 <BR>
@@ -972,6 +1052,10 @@ telefon
 <BR>
 <CODE>
 telefon:
+</CODE>
+<BR>
+<CODE>
+vratilVse
 </CODE>
 <BR>
 </TD></TR>
@@ -998,6 +1082,20 @@ initialize
      jeStudentem := nil.
      datumNarozeni := nil.
      telefon := nil.</PRE>
+<LI>
+<B><CODE>
+pocetPujcek
+</CODE></B>
+<PRE>
+	^self pujcky size</PRE>
+<LI>
+<B><CODE>
+vratilVse
+</CODE></B>
+<PRE>
+	^&#40;self pujcky anySatisfy: [:pu | pu datumVraceni isNil]&#41; 
+		ifTrue: [&#39;Ne&#39;]
+		ifFalse: [&#39;Ano&#39;]</PRE>
 </UL>
 <HR>
 <H2>Links</H2>

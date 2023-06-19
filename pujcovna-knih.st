@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <st-source>
-<time-stamp>From VisualWorks® NonCommercial, 7.4.1 of May 30, 2006 on June 19, 2023 at 1:55:19 am</time-stamp>
+<time-stamp>From VisualWorks® NonCommercial, 7.4.1 of May 30, 2006 on June 19, 2023 at 2:57:44 am</time-stamp>
 
 
 <class>
@@ -146,6 +146,18 @@
 </body>
 </methods>
 
+<methods>
+<class-id>Autor</class-id> <category>other methods</category>
+
+<body package="DaskalosUserClasses" selector="jeNazivu">jeNazivu
+	^self datumUmrti isNil ifTrue: [true] ifFalse: [false]</body>
+
+<body package="DaskalosUserClasses" selector="vek">vek
+	| datum |
+	datum := datumUmrti isNil ifTrue: [Date today] ifFalse: [datumUmrti].
+	^((datum subtractDate: datumNarozeni) / 365.2422) truncated</body>
+</methods>
+
 
 <class>
 <name>Ctenar</name>
@@ -227,6 +239,18 @@
      datumNarozeni := nil.
      telefon := nil.
 </body>
+</methods>
+
+<methods>
+<class-id>Ctenar</class-id> <category>other methods</category>
+
+<body package="DaskalosUserClasses" selector="pocetPujcek">pocetPujcek
+	^self pujcky size</body>
+
+<body package="DaskalosUserClasses" selector="vratilVse">vratilVse
+	^(self pujcky anySatisfy: [:pu | pu datumVraceni isNil]) 
+		ifTrue: ['Ne']
+		ifFalse: ['Ano']</body>
 </methods>
 
 
@@ -317,6 +341,16 @@
 </body>
 </methods>
 
+<methods>
+<class-id>Kniha</class-id> <category>other methods</category>
+
+<body package="DaskalosUserClasses" selector="pocetPujcek">pocetPujcek
+	^(Pujcka allInstances select: [:pu | pu knihy includes: self]) size</body>
+
+<body package="DaskalosUserClasses" selector="stari">stari
+	^Date today year - rokVydani</body>
+</methods>
+
 
 <class>
 <name>Pujcka</name>
@@ -398,6 +432,18 @@
      knihy := Set new.
      pobocka := nil.
 </body>
+</methods>
+
+<methods>
+<class-id>Pujcka</class-id> <category>other methods</category>
+
+<body package="DaskalosUserClasses" selector="delkaPujcky">delkaPujcky
+	| datum |
+	datum := datumVraceni isNil ifTrue: [Date today] ifFalse: [datumVraceni].
+	^datum subtractDate: datumPujceni</body>
+
+<body package="DaskalosUserClasses" selector="jeVracena">jeVracena
+	^datumVraceni notNil ifTrue: [true] ifFalse: [false]</body>
 </methods>
 
 
@@ -486,6 +532,14 @@
      mesto := nil.
      vedouciPobocky := nil.
 </body>
+</methods>
+
+<methods>
+<class-id>Pobocka</class-id> <category>other methods</category>
+
+<body package="DaskalosUserClasses" selector="pocetPujcenychKnih">pocetPujcenychKnih
+	^((Pujcka allInstances select: [:pu | pu pobocka = self]) 
+		collect: [:pu | pu knihy size]) sum</body>
 </methods>
 
 
