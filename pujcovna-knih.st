@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <st-source>
-<time-stamp>From VisualWorks® NonCommercial, 7.4.1 of May 30, 2006 on June 19, 2023 at 8:37:03 am</time-stamp>
+<time-stamp>From VisualWorks® NonCommercial, 7.4.1 of May 30, 2006 on June 19, 2023 at 8:44:47 am</time-stamp>
 
 
 <class>
@@ -414,6 +414,9 @@
 
 <body package="DaskalosUserClasses" selector="jeVracena">jeVracena
 	^datumVraceni notNil ifTrue: [true] ifFalse: [false]</body>
+
+<body package="DaskalosUserClasses" selector="pocetKnih">pocetKnih
+	^knihy size</body>
 </methods>
 
 

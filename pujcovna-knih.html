@@ -66,7 +66,20 @@ Pujcky select: [:f | f delkaPujcky &lt; &#40;&#40;Pujcky collect: [: p | p delka
 Pujcky select: [:f | f pobocka mesto = &#39;Praha&#39; and: [f knihy anySatisfy: [:r | r autor prijmeni = &#39;Shakespeare&#39;]]]
 
 &quot;Dotaz 5 - Vsichni ctenari&#44; kteri si pujcili Annu Kareninu&quot;
-Ctenari select: [:c | c pujcky anySatisfy: [:p | p knihy anySatisfy: [:k | k nazev = &#39;Anna Karenina&#39; ]]]</PRE>
+Ctenari select: [:c | c pujcky anySatisfy: [:p | p knihy anySatisfy: [:k | k nazev = &#39;Anna Karenina&#39; ]]]
+
+&quot;Pravidlo 1 - Vsechny pujcky musi mit pobocku&quot;
+&#40;Pujcka allInstances select: [:pu | pu pobocka isNil]&#41; isEmpty
+
+&quot;Pravidlo 2 - Vsechny pujcky musi mit nejaky datum pujceni&quot;
+&#40;Pujcka allInstances select: [:pu | pu datumPujceni isNil]&#41; isEmpty
+
+&quot;Pravidlo 3 - Vsechny osoby musi mit jmeno a prijmeni&quot;
+&#40;Osoba  allInstances select: [:s | s jmeno isNil or: [ s prijmeni isNil ] ]&#41; isEmpty
+
+&quot;Pravidlo 4 - Vsechny pujcky musi obsahovat alespon jednu knihu&quot;
+&#40;Pujcka allInstances select: [:pu | pu pocetKnih&lt;1]&#41; isEmpty
+</PRE>
 <H4>Workspace Objects</H4>
 <UL>
 
@@ -134,6 +147,10 @@ c4 :Ctenar
 <LI>
 <CODE>
 c5 :Ctenar
+</CODE>
+<LI>
+<CODE>
+c6 :Ctenar
 </CODE>
 <LI>
 <CODE>
@@ -765,6 +782,10 @@ pobocka
 pobocka:
 </CODE>
 <BR>
+<CODE>
+pocetKnih
+</CODE>
+<BR>
 </TD></TR>
 </TABLE>
 </TD>
@@ -803,6 +824,12 @@ jeVracena
 </CODE></B>
 <PRE>
 	^datumVraceni notNil ifTrue: [true] ifFalse: [false]</PRE>
+<LI>
+<B><CODE>
+pocetKnih
+</CODE></B>
+<PRE>
+	^knihy size</PRE>
 </UL>
 <TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
 <TR>
