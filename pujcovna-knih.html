@@ -53,6 +53,196 @@ Semestralni projekt na pujcovani knih z ruznych pobocek.
 <BR>
 <HR>
 <H2>Workspace</H2>
+<PRE>^&#40;Pujcka allInstances select: [:pu | pu knihy includes: k1]&#41; size</PRE>
+<H4>Workspace Objects</H4>
+<UL>
+
+<BR>
+<LI>
+<CODE>
+Autori :Set
+</CODE>
+<LI>
+<CODE>
+Ctenari :Set
+</CODE>
+<LI>
+<CODE>
+Knihy :Set
+</CODE>
+<LI>
+<CODE>
+Osoby :Set
+</CODE>
+<LI>
+<CODE>
+Pobocky :Set
+</CODE>
+<LI>
+<CODE>
+a1 :Autor
+</CODE>
+<LI>
+<CODE>
+a2 :Autor
+</CODE>
+<LI>
+<CODE>
+a3 :Autor
+</CODE>
+<LI>
+<CODE>
+a4 :Autor
+</CODE>
+<LI>
+<CODE>
+a5 :Autor
+</CODE>
+<LI>
+<CODE>
+c1 :Ctenar
+</CODE>
+<LI>
+<CODE>
+c2 :Ctenar
+</CODE>
+<LI>
+<CODE>
+c3 :Ctenar
+</CODE>
+<LI>
+<CODE>
+c4 :Ctenar
+</CODE>
+<LI>
+<CODE>
+c5 :Ctenar
+</CODE>
+<LI>
+<CODE>
+k1 :Kniha
+</CODE>
+<LI>
+<CODE>
+k10 :Kniha
+</CODE>
+<LI>
+<CODE>
+k2 :Kniha
+</CODE>
+<LI>
+<CODE>
+k3 :Kniha
+</CODE>
+<LI>
+<CODE>
+k4 :Kniha
+</CODE>
+<LI>
+<CODE>
+k5 :Kniha
+</CODE>
+<LI>
+<CODE>
+k6 :Kniha
+</CODE>
+<LI>
+<CODE>
+k7 :Kniha
+</CODE>
+<LI>
+<CODE>
+k8 :Kniha
+</CODE>
+<LI>
+<CODE>
+k9 :Kniha
+</CODE>
+<LI>
+<CODE>
+o1 :Osoba
+</CODE>
+<LI>
+<CODE>
+o2 :Osoba
+</CODE>
+<LI>
+<CODE>
+o3 :Osoba
+</CODE>
+<LI>
+<CODE>
+o4 :Osoba
+</CODE>
+<LI>
+<CODE>
+o5 :Osoba
+</CODE>
+<LI>
+<CODE>
+p1 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p10 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p2 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p3 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p4 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p5 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p6 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p7 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p8 :Pujcka
+</CODE>
+<LI>
+<CODE>
+p9 :Pujcka
+</CODE>
+<LI>
+<CODE>
+pob1 :Pobocka
+</CODE>
+<LI>
+<CODE>
+pob2 :Pobocka
+</CODE>
+<LI>
+<CODE>
+pob3 :Pobocka
+</CODE>
+<LI>
+<CODE>
+pob4 :Pobocka
+</CODE>
+<LI>
+<CODE>
+pob5 :Pobocka
+</CODE>
+</UL>
+
+<BR>
+<HR>
+<H2>Script</H2>
 <PRE>c1 := Ctenar new.
 c1 jmeno: &#39;Jan&#39;.
 c1 prijmeni: &#39;Novak&#39;.
@@ -303,199 +493,7 @@ Knihy := Set new.
 Knihy add: k1; add: k2; add: k3; add: k4; add: k5; add: k6; add: k7; add: k8; add: k9; add: k10.
 
 Pobocky := Set new.
-Pobocky add: pob1; add: pob2; add: pob3; add: pob4; add: pob5.
-
-^&#40;Pujcka allInstances select: [:pu | pu knihy includes: k1]&#41; size</PRE>
-<H4>Workspace Objects</H4>
-<UL>
-
-<BR>
-<LI>
-<CODE>
-Autori :Set
-</CODE>
-<LI>
-<CODE>
-Ctenari :Set
-</CODE>
-<LI>
-<CODE>
-Knihy :Set
-</CODE>
-<LI>
-<CODE>
-Osoby :Set
-</CODE>
-<LI>
-<CODE>
-Pobocky :Set
-</CODE>
-<LI>
-<CODE>
-a1 :Autor
-</CODE>
-<LI>
-<CODE>
-a2 :Autor
-</CODE>
-<LI>
-<CODE>
-a3 :Autor
-</CODE>
-<LI>
-<CODE>
-a4 :Autor
-</CODE>
-<LI>
-<CODE>
-a5 :Autor
-</CODE>
-<LI>
-<CODE>
-c1 :Ctenar
-</CODE>
-<LI>
-<CODE>
-c2 :Ctenar
-</CODE>
-<LI>
-<CODE>
-c3 :Ctenar
-</CODE>
-<LI>
-<CODE>
-c4 :Ctenar
-</CODE>
-<LI>
-<CODE>
-c5 :Ctenar
-</CODE>
-<LI>
-<CODE>
-k1 :Kniha
-</CODE>
-<LI>
-<CODE>
-k10 :Kniha
-</CODE>
-<LI>
-<CODE>
-k2 :Kniha
-</CODE>
-<LI>
-<CODE>
-k3 :Kniha
-</CODE>
-<LI>
-<CODE>
-k4 :Kniha
-</CODE>
-<LI>
-<CODE>
-k5 :Kniha
-</CODE>
-<LI>
-<CODE>
-k6 :Kniha
-</CODE>
-<LI>
-<CODE>
-k7 :Kniha
-</CODE>
-<LI>
-<CODE>
-k8 :Kniha
-</CODE>
-<LI>
-<CODE>
-k9 :Kniha
-</CODE>
-<LI>
-<CODE>
-o1 :Osoba
-</CODE>
-<LI>
-<CODE>
-o2 :Osoba
-</CODE>
-<LI>
-<CODE>
-o3 :Osoba
-</CODE>
-<LI>
-<CODE>
-o4 :Osoba
-</CODE>
-<LI>
-<CODE>
-o5 :Osoba
-</CODE>
-<LI>
-<CODE>
-p1 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p10 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p2 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p3 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p4 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p5 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p6 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p7 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p8 :Pujcka
-</CODE>
-<LI>
-<CODE>
-p9 :Pujcka
-</CODE>
-<LI>
-<CODE>
-pob1 :Pobocka
-</CODE>
-<LI>
-<CODE>
-pob2 :Pobocka
-</CODE>
-<LI>
-<CODE>
-pob3 :Pobocka
-</CODE>
-<LI>
-<CODE>
-pob4 :Pobocka
-</CODE>
-<LI>
-<CODE>
-pob5 :Pobocka
-</CODE>
-</UL>
-
-<BR>
-<HR>
-<H2>Script</H2>
-<PRE>&quot;Note that variables begining with uppercase letter will be moved into the workspace pool.&quot;</PRE>
+Pobocky add: pob1; add: pob2; add: pob3; add: pob4; add: pob5.</PRE>
 <HR>
 <H2>Diagram</H2>
 <IMG SRC="pujcovna-knih.gif">
