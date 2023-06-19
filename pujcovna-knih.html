@@ -97,32 +97,31 @@ Pravidla<BR>
 <HR>
 <H2>Workspace</H2>
 <PRE>&quot;Dotaz 1 - Vsechny pujcky z Mestske knihovny Praha 1 a delka pujcky je aspon tyden&quot;
-Pujcky select: [:pu | pu pobocka nazev = &#39;MK Praha 1 - Skolska&#39; and: [pu delkaPujcky &gt;= 7]]
+Pujcky select: [:p | p pobocka nazev = &#39;MK Praha 1 - Skolska&#39; and: [p delkaPujcky &gt;= 7]]
 
 &quot;Dotaz 2 - Nejvice pujcovana kniha s literarnim smerem romantismus&#44; ktera je starsi nez 200 let&quot;
-&#40;Knihy select: [: po | po autor literarniObdobi = &#39;Romantismus&#39; and: [po stari &gt; 200]]&#41; max
+&#40;Knihy select: [: p | p autor literarniObdobi = &#39;Romantismus&#39; and: [p stari &gt; 200]]&#41; max
 
 &quot;Dotaz 3 - Pujcky&#44; ktere maji delku pujcky kratsi nez prumer a ktere jsou vraceny&quot;
-Pujcky select: [:f | f delkaPujcky &lt; &#40;&#40;Pujcky collect: [: p | p delkaPujcky ]&#41; avg asFloat&#41; and: [f jeVracena = true]]
+Pujcky select: [:p | p delkaPujcky &lt; &#40;&#40;Pujcky collect: [: f | f delkaPujcky ]&#41; avg asFloat&#41; and: [p jeVracena = true]]
 
 &quot;Dotaz 4 - Vsechny pujcky&#44; ktere maji aspon jedno dilo od Shakespeara&quot;
-Pujcky select: [:f | f pobocka mesto = &#39;Praha&#39; and: [f knihy anySatisfy: [:r | r autor prijmeni = &#39;Shakespeare&#39;]]]
+Pujcky select: [:p | p pobocka mesto = &#39;Praha&#39; and: [p knihy anySatisfy: [:f | f autor prijmeni = &#39;Shakespeare&#39;]]]
 
 &quot;Dotaz 5 - Vsichni ctenari&#44; kteri si pujcili Annu Kareninu&quot;
-Ctenari select: [:c | c pujcky anySatisfy: [:p | p knihy anySatisfy: [:k | k nazev = &#39;Anna Karenina&#39; ]]]
+Ctenari select: [:p | p pujcky anySatisfy: [:f | f knihy anySatisfy: [:r | r nazev = &#39;Anna Karenina&#39; ]]]
 
 &quot;Pravidlo 1 - Vsechny pujcky musi mit pobocku&quot;
-&#40;Pujcka allInstances select: [:pu | pu pobocka isNil]&#41; isEmpty
+&#40;Pujcka allInstances select: [:p | p pobocka isNil]&#41; isEmpty
 
 &quot;Pravidlo 2 - Vsechny pujcky musi mit datum pujceni&quot;
-&#40;Pujcka allInstances select: [:pu | pu datumPujceni isNil]&#41; isEmpty
+&#40;Pujcka allInstances select: [:p | p datumPujceni isNil]&#41; isEmpty
 
 &quot;Pravidlo 3 - Vsechny osoby musi mit jmeno a prijmeni&quot;
-&#40;Osoba  allInstances select: [:s | s jmeno isNil or: [ s prijmeni isNil ] ]&#41; isEmpty
+&#40;Osoba  allInstances select: [:p | p jmeno isNil or: [ p prijmeni isNil ] ]&#41; isEmpty
 
 &quot;Pravidlo 4 - Vsechny pujcky musi obsahovat alespon jednu knihu&quot;
-&#40;Pujcka allInstances select: [:pu | pu pocetKnih&lt;1]&#41; isEmpty
-</PRE>
+&#40;Pujcka allInstances select: [:p | p pocetKnih&lt;1]&#41; isEmpty</PRE>
 <H4>Workspace Objects</H4>
 <UL>
 
@@ -186,10 +185,6 @@ c4 :Ctenar
 <LI>
 <CODE>
 c5 :Ctenar
-</CODE>
-<LI>
-<CODE>
-c6 :Ctenar
 </CODE>
 <LI>
 <CODE>
@@ -494,8 +489,7 @@ p4 datumPujceni: &#39;08-12-2023&#39; asDate.
 p4 datumVraceni: &#39;08-18-2023&#39; asDate.
 
 p5 := Pujcka new.
-p5 datumPujceni: &#39;09-03-2023&#39; asDate.
-p5 datumVraceni: &#39;09-08-2023&#39; asDate.
+p5 datumPujceni: &#39;05-03-2023&#39; asDate.
 
 p6 := Pujcka new.
 p6 datumPujceni: &#39;10-20-2023&#39; asDate.
@@ -1144,8 +1138,8 @@ vratilVse
 </CODE></B>
 <PRE>
 	^&#40;self pujcky anySatisfy: [:pu | pu datumVraceni isNil]&#41; 
-		ifTrue: [&#39;Ne&#39;]
-		ifFalse: [&#39;Ano&#39;]</PRE>
+		ifTrue: [false]
+		ifFalse: [true]</PRE>
 </UL>
 <HR>
 <H2>Links</H2>
